@@ -52,7 +52,7 @@
                   "with": "projects/popup-panel/src/environments/environment.prod.ts"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "none"
             },
             "development": {
               "buildOptimizer": false,

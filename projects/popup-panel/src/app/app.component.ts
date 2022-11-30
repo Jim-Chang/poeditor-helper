@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass'],
 })
 export class AppComponent {
-  title = 'popup-panel';
+  apiKey = '';
+  showSaved = false;
+
+  constructor(private zone: NgZone) {}
+
+  onClickSaveBtn(): void {
+    this.showSaved = false;
+    chrome.storage.sync.set({ apiKey: this.apiKey }, () => {
+      this.zone.run(() => {
+        this.showSaved = true;
+      });
+    });
+  }
 }

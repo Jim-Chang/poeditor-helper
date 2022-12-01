@@ -1,46 +1,21 @@
-import axios from 'axios';
 import * as $ from 'jquery';
+import { Converter } from 'opencc-js';
 
 function isPureText(str) {
   return !str.startsWith('<');
 }
 
-async function loadConfig(): Promise<any> {
-  return new Promise((resolve) => {
-    chrome.storage.sync.get(['apiKey'], (items) => {
-      resolve(items);
-    });
-  });
-}
+// async function loadConfig(): Promise<any> {
+//   return new Promise((resolve) => {
+//     chrome.storage.sync.get(['apiKey'], (items) => {
+//       resolve(items);
+//     });
+//   });
+// }
 
-async function getCNTranslation(str) {
-  const config = await loadConfig();
-  const apiKey = config.apiKey;
-
-  const encodedParams = new URLSearchParams();
-  encodedParams.append('q', str);
-  encodedParams.append('target', 'zh_cn');
-  encodedParams.append('source', 'zh_tw');
-
-  const options = {
-    method: 'POST',
-    url: 'https://google-translate1.p.rapidapi.com/language/translate/v2',
-    headers: {
-      'content-type': 'application/x-www-form-urlencoded',
-      'X-RapidAPI-Key': apiKey,
-      'X-RapidAPI-Host': 'google-translate1.p.rapidapi.com',
-    },
-    data: encodedParams,
-  };
-
-  try {
-    const ret = await axios.request(options);
-    console.log(ret);
-    return ret.data.data.translations[0].translatedText;
-  } catch (e) {
-    console.error(e);
-    return null;
-  }
+function getCNTranslation(str) {
+  const convert = Converter({ from: 'tw', to: 'cn' });
+  return convert(str);
 }
 
 type JqEle = any;
@@ -105,12 +80,13 @@ function handleMutation(mutations: MutationRecord[]) {
       const transBtn = $('<button class="po-helper-btn">Trans</button>');
 
       // create trans btn click event handler
-      transBtn.on('click', async () => {
+      transBtn.on('click', () => {
         const twText = rowsHandler.twText;
         if (twText) {
           rowsHandler.clickCnEditArea();
 
-          const cnText = await getCNTranslation(twText);
+          const cnText = getCNTranslation(twText);
+          console.log(`translation CN: ${cnText}`);
           if (cnText) {
             rowsHandler.setCnText(cnText);
           }

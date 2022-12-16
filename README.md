@@ -1,27 +1,28 @@
-# PoeditorHelper
+# POEditor Helper
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.5.
+This is a Chrome Extension that let user translate zh_TW between zh_Hans with one click.
 
-## Development server
+<img src="img/demo_screenshot.png" style="max-width:500px; margin: 0 auto; display: block;"/>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## How to develop
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run following commands in project root:
 
-## Build
+```bash
+npm install
+npm run watch
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+After finish, go to Chrome extension settings page and click `Load unpacked` in top left corner.
+Then in dialog box, select `dist` folder in project root.
 
-## Running unit tests
+## How to compile for production
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run following commands in project root:
 
-## Running end-to-end tests
+```bash
+npm run build
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+The compiled artifact for production environment can be found in `dist` folder.

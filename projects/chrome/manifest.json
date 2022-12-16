@@ -3,6 +3,9 @@
   "version": "1.0",
   "description": "Let PO Editor be cool",
   "manifest_version": 3,
+  "icons": {
+    "128": "icon.png"
+  },
   "content_scripts": [
     {
       "matches": ["https://poeditor.com/*"],

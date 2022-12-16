@@ -1,4 +1,10 @@
-.po-helper-btn {
+.po-terms-btn {
   position: absolute;
-  left: 3%
+  left: 3%;
+}
+
+.po-edit-btn {
+  position: absolute;
+  right: 3%;
+  z-index: 10000;
 }

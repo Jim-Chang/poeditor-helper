@@ -24,6 +24,15 @@ function handleMutation(mutations: MutationRecord[]) {
   });
 }
 
+function initHandlerIfInEditTwTrans() {
+  const href = window.location.href;
+  // only for po edit page in zh_Hans
+  if (href.includes('po_edit') && href.includes('id_language=274')) {
+    const handler = new TransRowHandler();
+    handler.handle();
+  }
+}
+
 function init() {
   const observer = new MutationObserver(handleMutation);
   observer.observe(document.body, {
@@ -31,8 +40,7 @@ function init() {
     subtree: true,
   });
 
-  const handler = new TransRowHandler();
-  handler.handle();
+  initHandlerIfInEditTwTrans();
 }
 
 init();

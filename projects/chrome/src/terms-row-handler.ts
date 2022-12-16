@@ -2,6 +2,7 @@ import { JqEle } from './define';
 import { getCnTranslation, getTwTranslation, isPureText } from './translation';
 import * as $ from 'jquery';
 
+// for terms_edit page
 export class TermsRowHandler {
   private rowsEle: JqEle;
 
@@ -11,7 +12,7 @@ export class TermsRowHandler {
 
   addTwToCnTransBtn(): void {
     // create trans btn
-    const btn = $('<button class="po-helper-btn">繁轉簡</button>');
+    const btn = $('<button class="po-terms-btn">繁轉簡</button>');
 
     // create trans btn click event handler
     btn.on('click', () => {
@@ -34,7 +35,7 @@ export class TermsRowHandler {
 
   addCnToTwTransBtn(): void {
     // create trans btn
-    const btn = $('<button class="po-helper-btn">簡轉繁</button>');
+    const btn = $('<button class="po-terms-btn">簡轉繁</button>');
 
     // create trans btn click event handler
     btn.on('click', () => {
